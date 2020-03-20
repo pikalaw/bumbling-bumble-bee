@@ -120,3 +120,5 @@ dist
 *.sass.map
 *.scss.map
 
+# vim
+*.swp

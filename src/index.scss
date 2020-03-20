@@ -9,7 +9,7 @@ $num-arrows: 24;
   margin: auto;
 }
 .arrow {
-  width: 0;
+  width: 1px;  /* easier to debug when you can see the rectangle */
   height: 50%;
   position: absolute;
   top: 0;
@@ -25,5 +25,9 @@ $num-arrows: 24;
   position: absolute;
   top: 0;
   left: 0;
-  content: '^'
+  transform: translateX(-50%);
+  content: '^';
+  background-color: hsla(70deg,45%,40%,.8);
+  padding: .7em 1em;
+  clip-path: polygon(0 0, 100% 0, 87% 100%, 13% 100%);
 }
