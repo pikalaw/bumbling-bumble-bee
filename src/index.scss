@@ -1,0 +1,29 @@
+$num-arrows: 24;
+
+.universe {
+  position: relative;
+  width: 100vmin;
+  height: 100vmin;
+  min-width: 300px;
+  min-height: 300px;
+  margin: auto;
+}
+.arrow {
+  width: 0;
+  height: 50%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform-origin: bottom left;
+}
+@for $i from 1 through $num-arrows {
+  .arrow-#{$i} {
+    transform: rotate(calc(360deg / #{$num-arrows} * #{$i}))
+  }
+}
+.arrow:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '^'
+}

@@ -1,0 +1,11 @@
+doctype html
+html(lang='en')
+  head
+    title Bumbling Bumble Bee with pure CSS
+    link(rel='stylesheet' href='./index.scss')
+  body
+    .universe
+      - var i = 0;
+      while i++ < 24
+        .arrow(class=`arrow-${i}`)
+
