@@ -7,6 +7,7 @@ $num-arrows: 24;
   min-width: 300px;
   min-height: 300px;
   margin: auto;
+  background-color: hsla(228deg,96%,88%,.8);
 }
 .arrow {
   width: 1px;  /* easier to debug when you can see the rectangle */
@@ -30,4 +31,25 @@ $num-arrows: 24;
   background-color: hsla(70deg,45%,40%,.8);
   padding: .7em 1em;
   clip-path: polygon(0 0, 100% 0, 87% 100%, 13% 100%);
+}
+.bee {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.bee:after {
+  width: 1em;
+  height: 1em;
+  background-color: hsla(49eg,90%,90%,.9);
+  clip-path: circle(50%);
+  padding: .5em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  content: ':)';
+  text-align: center;
+  transform: translate(-50%, -50%) rotate(90deg);
 }
