@@ -9,4 +9,7 @@ html(lang='en')
       while i++ < 24
         .arrow(class=`arrow-${i}`)
       .bumbling.bee
+      .source
+        - var sourceUrl = 'https://github.com/pikalaw/bumbling-bumble-bee'
+        a(href=`${sourceUrl}`)=sourceUrl
 
