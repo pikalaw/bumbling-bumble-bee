@@ -1,6 +1,11 @@
+@use 'sass:color';
 @use 'sass:math';
 
 $num-arrows: 24;
+$arrow-color: hsla(125deg,45%,40%,.8);
+$arrow-height: 5vmin;
+$bee-color: hsla(60deg,45%,40%,.8);
+$bee-size: 2em;
 $bee-flying-time: 3s;
 $bee-path-length: 48%;
 
@@ -10,6 +15,11 @@ $bee-path-length: 48%;
 
 @function left-coordinate($angle) {
   @return 50% + $bee-path-length * math.sin($angle);
+}
+
+@function brighten($color) {
+  @return color.adjust(
+      $color, $saturation: +40%, $lightness: + 40%, $alpha: +.2);
 }
 
 .universe {
@@ -24,19 +34,30 @@ $bee-path-length: 48%;
 .arrow {
   width: 0;
   height: 50%;
-  position: absolute;
-  top: 0;
-  left: 50%;
   &:after {
     position: absolute;
     top: 0;
     left: 0;
     transform: translateX(-50%);
+    background-color: $arrow-color;
+    transition: background-color .5s;
     content: '^';
-    background-color: hsla(70deg,45%,40%,.8);
-    padding: .7em 1em;
-    clip-path: polygon(0 0, 100% 0, 87% 100%, 13% 100%);
+    text-align: center;
+    line-height: $arrow-height;
+    $arrow-width: 100vmin * math.$pi / $num-arrows;
+    width: $arrow-width;
+    height: $arrow-height;
+    $chip: $arrow-height * $arrow-width / 2 / 50vmin;
+    clip-path: polygon(0 0, 100% 0, calc(100% - #{$chip}) 100%, #{$chip} 100%);
   }
+  &:hover:after {
+    background-color: brighten($arrow-color);
+  }
+}
+.arrow {
+  position: absolute;
+  top: 0;
+  left: 50%;
   transform-origin: bottom left;
   @for $i from 1 through $num-arrows {
     &-#{$i} {
@@ -57,9 +78,10 @@ $bee-path-length: 48%;
   left: 50%;
   transform: translate(-50%, -50%);
   &:after {
-    width: 1em;
-    height: 1em;
-    background-color: hsla(49eg,90%,90%,.9);
+    width: $bee-size;
+    height: $bee-size;
+    background-color: $bee-color;
+    transition: background-color .5s;
     clip-path: circle(50%);
     padding: .5em;
     position: absolute;
@@ -67,6 +89,7 @@ $bee-path-length: 48%;
     left: 50%;
     content: ':)';
     text-align: center;
+    line-height: $bee-size;
     transform: translate(-50%, -50%) rotate(90deg);
   }
 }
@@ -75,4 +98,5 @@ $bee-path-length: 48%;
 }
 .arrow:hover ~ .bee:after {
   content: ':o';
+  background-color: brighten($bee-color);
 }
