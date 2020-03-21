@@ -2,9 +2,9 @@
 @use 'sass:math';
 
 $num-arrows: 24;
-$arrow-color: hsla(125deg,45%,40%,.8);
+$arrow-color: hsla(125deg, 45%, 40%, 0.8);
 $arrow-height: 5vmin;
-$bee-color: hsla(60deg,45%,40%,.8);
+$bee-color: hsla(60deg, 45%, 40%, 0.8);
 $bee-size: 2em;
 $bee-flying-time: 3s;
 $bee-path-length: 48%;
@@ -19,9 +19,21 @@ $bee-path-length: 48%;
 
 @function brighten($color) {
   @return color.adjust(
-      $color, $saturation: +40%, $lightness: + 40%, $alpha: +.2);
+    $color,
+    $saturation: +40%,
+    $lightness: + 40%,
+    $alpha: +0.2
+  );
 }
 
+%reset-button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+}
 .universe {
   position: relative;
   width: 100vmin;
@@ -29,9 +41,10 @@ $bee-path-length: 48%;
   min-width: 300px;
   min-height: 300px;
   margin: auto;
-  background-color: hsla(228deg,96%,88%,.8);
+  background-color: hsla(228deg, 96%, 88%, 0.8);
 }
 .arrow {
+  @extend %reset-button;
   width: 0;
   height: 50%;
   &:after {
@@ -40,8 +53,8 @@ $bee-path-length: 48%;
     left: 0;
     transform: translateX(-50%);
     background-color: $arrow-color;
-    transition: background-color .5s;
-    content: '^';
+    transition: background-color 0.5s;
+    content: "^";
     text-align: center;
     line-height: $arrow-height;
     $arrow-width: 100vmin * math.$pi / $num-arrows;
@@ -82,13 +95,13 @@ $bee-path-length: 48%;
     width: $bee-size;
     height: $bee-size;
     background-color: $bee-color;
-    transition: background-color .5s;
+    transition: background-color 0.5s;
     clip-path: circle(50%);
-    padding: .5em;
+    padding: 0.5em;
     position: absolute;
     top: 50%;
     left: 50%;
-    content: ':)';
+    content: ":)";
     text-align: center;
     line-height: $bee-size;
     transform: translate(-50%, -50%) rotate(90deg);
@@ -98,7 +111,7 @@ $bee-path-length: 48%;
   transition: top $bee-flying-time, left $bee-flying-time;
 }
 .arrow:hover ~ .bee:after {
-  content: ':o';
+  content: ":o";
   background-color: brighten($bee-color);
 }
 .source {
